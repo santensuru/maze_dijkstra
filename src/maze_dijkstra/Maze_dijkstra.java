@@ -71,7 +71,7 @@ public class Maze_dijkstra {
         
         char[] currPos;
         
-        Pair<String, String> currPoint = new Pair<String, String>("5", "11");
+        Pair<String, String> currPoint = new Pair<>("5", "11");
         
         ArrayList<Pair<String,String>> currPath = new ArrayList<>();
         
@@ -106,7 +106,7 @@ public class Maze_dijkstra {
         if (x-1 >= 0 && Integer.parseInt(String.valueOf(map[y][x-1])) > 0 && (sign[y][x-1] > depth || sign[y][x-1] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
-            Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x-1),String.valueOf(y));
+            Pair<String, String> currPoint = new Pair<>(String.valueOf(x-1),String.valueOf(y));
             currPath.add(currPoint);
             
             paths.add(currPath);
@@ -132,7 +132,7 @@ public class Maze_dijkstra {
         if (x+1 <= 11 && Integer.parseInt(String.valueOf(map[y][x+1])) > 0 && (sign[y][x+1] > depth || sign[y][x+1] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
-            Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x+1),String.valueOf(y));
+            Pair<String, String> currPoint = new Pair<>(String.valueOf(x+1),String.valueOf(y));
             currPath.add(currPoint);
             
             paths.add(currPath);
@@ -158,7 +158,7 @@ public class Maze_dijkstra {
         if (y-1 >= 0 && Integer.parseInt(String.valueOf(map[y-1][x])) > 0 && (sign[y-1][x] > depth || sign[y-1][x] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
-            Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x),String.valueOf(y-1));
+            Pair<String, String> currPoint = new Pair<>(String.valueOf(x),String.valueOf(y-1));
             currPath.add(currPoint);
             
             paths.add(currPath);
@@ -184,7 +184,7 @@ public class Maze_dijkstra {
         if (y+1 <= 11 && Integer.parseInt(String.valueOf(map[y+1][x])) > 0 && (sign[y+1][x] > depth || sign[y+1][x] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
-            Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x),String.valueOf(y+1));
+            Pair<String, String> currPoint = new Pair<>(String.valueOf(x),String.valueOf(y+1));
             currPath.add(currPoint);
             
             paths.add(currPath);
