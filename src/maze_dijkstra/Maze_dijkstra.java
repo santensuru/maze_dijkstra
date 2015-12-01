@@ -13,24 +13,54 @@ import java.util.ArrayList;
  */
 public class Maze_dijkstra {
     
+//    static char[][] map = {
+//        {'0', '3', '0', '0', '0', '0', '0'},
+//        {'0', '1', '0', '1', '1', '1', '0'},
+//        {'0', '1', '0', '1', '0', '1', '0'},
+//        {'0', '1', '1', '1', '0', '1', '0'},
+//        {'0', '0', '1', '0', '0', '1', '0'},
+//        {'0', '1', '1', '1', '1', '1', '0'},
+//        {'0', '0', '0', '0', '0', '2', '0'}
+//    };
+//    
+//    static char[][] sign = {
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'},
+//        {'0', '0', '0', '0', '0', '0', '0'}
+//    };
+    
     static char[][] map = {
-        {'0', '3', '0', '0', '0', '0', '0'},
-        {'0', '1', '0', '1', '1', '1', '0'},
-        {'0', '1', '0', '1', '0', '1', '0'},
-        {'0', '1', '1', '1', '0', '1', '0'},
-        {'0', '0', '1', '0', '0', '1', '0'},
-        {'0', '1', '1', '1', '1', '1', '0'},
-        {'0', '0', '0', '0', '0', '2', '0'}
+        {'0', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+        {'0', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0'},
+        {'0', '1', '0', '1', '0', '1', '0', '0', '0', '0', '0', '0'},
+        {'0', '1', '1', '1', '0', '1', '0', '1', '1', '1', '0', '0'},
+        {'0', '0', '1', '0', '0', '1', '0', '1', '0', '1', '0', '0'},
+        {'0', '1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '0'},
+        {'0', '1', '0', '1', '1', '1', '1', '1', '0', '0', '1', '0'},
+        {'0', '1', '0', '1', '0', '1', '0', '0', '0', '0', '1', '0'},
+        {'0', '1', '1', '1', '0', '1', '1', '0', '0', '1', '1', '0'},
+        {'0', '0', '1', '0', '0', '1', '0', '0', '0', '1', '0', '0'},
+        {'0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0'},
+        {'0', '0', '0', '0', '0', '2', '0', '0', '0', '0', '0', '0'}
     };
     
     static char[][] sign = {
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'},
-        {'0', '0', '0', '0', '0', '0', '0'}
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
     };
     
     static ArrayList<Pair<String, String>> path = new ArrayList<>();
@@ -39,9 +69,9 @@ public class Maze_dijkstra {
         
         ArrayList<ArrayList<Pair<String, String>>> paths = new ArrayList<>();
         
-        int currPos = 0;
+        char[] currPos;
         
-        Pair<String, String> currPoint = new Pair<String, String>("5", "6");
+        Pair<String, String> currPoint = new Pair<String, String>("5", "11");
         
         ArrayList<Pair<String,String>> currPath = new ArrayList<>();
         
@@ -49,25 +79,31 @@ public class Maze_dijkstra {
         
         paths.add(currPath);
         
-        currPos = doRecursive(paths, map, sign, currPoint, paths.size()-1);
+        currPos = doRecursive(paths, map, sign, currPoint, paths.size()-1, (char)0x01);
         
-//        System.out.println(currPos);
+//        System.out.println((int)currPos[0]);
         
 //        System.out.println(paths.get(currPos));
         
-        return paths.get(currPos);
+        return paths.get((int)currPos[0]);
     }
     
-    private static int doRecursive(ArrayList<ArrayList<Pair<String, String>>> paths, char[][] map, char[][] sign, Pair<String, String> point, int n) {
+    private static char[] doRecursive(ArrayList<ArrayList<Pair<String, String>>> paths, char[][] map, char[][] sign, Pair<String, String> point, int n, char depth) {
         int x = Integer.parseInt(point.getLeft());
         int y = Integer.parseInt(point.getRight());
         
-        int currPos = 0;
+        char[] currPos = new char[2];
+        currPos[0] = 0x00;
+        currPos[1] = 0x00;
+        
+        char[] nextPos = new char[2];
+        nextPos[0] = 0x00;
+        nextPos[1] = 0x00;
         
 //        System.out.println(paths.get(n));   }
         
         // left
-        if (x-1 >= 0 && Integer.parseInt(String.valueOf(map[y][x-1])) > 0 && Integer.parseInt(String.valueOf(sign[y][x-1])) == 0) {
+        if (x-1 >= 0 && Integer.parseInt(String.valueOf(map[y][x-1])) > 0 && (sign[y][x-1] > depth || sign[y][x-1] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
             Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x-1),String.valueOf(y));
@@ -75,18 +111,25 @@ public class Maze_dijkstra {
             
             paths.add(currPath);
             
-            sign[y][x-1] = '1';
+            sign[y][x-1] = depth;
             
             if (Integer.parseInt(String.valueOf(map[y][x-1])) == 3) {
-                currPos += paths.size()-1;
+                if ((currPos[1] != 0 && depth < currPos[1]) || currPos[1] == 0x00) {
+                    currPos[0] = (char)(paths.size()-1);
+                    currPos[1] = depth;
+                }
 //                System.out.println(currPos);
             } else {
-                currPos += doRecursive(paths, map, sign, currPoint, paths.size()-1);
+                nextPos = doRecursive(paths, map, sign, currPoint, paths.size()-1, (char)(depth+1));
+                if ((nextPos[1] <= currPos[1] && currPos[1] != 0x00 && nextPos[1] != 0x00) || (currPos[1] == 0x00 && nextPos[1] != 0x00)) {
+                    currPos[0] = nextPos[0];
+                    currPos[1] = nextPos[1];
+                }
             }
         }
         
         // right
-        if (x+1 <= 6 && Integer.parseInt(String.valueOf(map[y][x+1])) > 0 && Integer.parseInt(String.valueOf(sign[y][x+1])) == 0) {
+        if (x+1 <= 11 && Integer.parseInt(String.valueOf(map[y][x+1])) > 0 && (sign[y][x+1] > depth || sign[y][x+1] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
             Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x+1),String.valueOf(y));
@@ -94,18 +137,25 @@ public class Maze_dijkstra {
             
             paths.add(currPath);
             
-            sign[y][x+1] = '1';
+            sign[y][x+1] = depth;
             
             if (Integer.parseInt(String.valueOf(map[y][x+1])) == 3) {
-                currPos += paths.size()-1;
+                if ((currPos[1] != 0 && depth < currPos[1]) || currPos[1] == 0x00) {
+                    currPos[0] = (char)(paths.size()-1);
+                    currPos[1] = depth;
+                }
 //                System.out.println(currPos);
             } else {
-                currPos += doRecursive(paths, map, sign, currPoint, paths.size()-1);
+                nextPos = doRecursive(paths, map, sign, currPoint, paths.size()-1, (char)(depth+1));
+                if ((nextPos[1] <= currPos[1] && currPos[1] != 0x00 && nextPos[1] != 0x00) || (currPos[1] == 0x00 && nextPos[1] != 0x00)) {
+                    currPos[0] = nextPos[0];
+                    currPos[1] = nextPos[1];
+                }
             }
         }
         
         // up
-        if (y-1 >= 0 && Integer.parseInt(String.valueOf(map[y-1][x])) > 0 && Integer.parseInt(String.valueOf(sign[y-1][x])) == 0) {
+        if (y-1 >= 0 && Integer.parseInt(String.valueOf(map[y-1][x])) > 0 && (sign[y-1][x] > depth || sign[y-1][x] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
             Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x),String.valueOf(y-1));
@@ -113,18 +163,25 @@ public class Maze_dijkstra {
             
             paths.add(currPath);
             
-            sign[y-1][x] = '1';
+            sign[y-1][x] = depth;
             
             if (Integer.parseInt(String.valueOf(map[y-1][x])) == 3) {
-                currPos += paths.size()-1;
-//                System.out.println(currPos);
+                if ((currPos[1] != 0 && depth < currPos[1]) || currPos[1] == 0x00) {
+                    currPos[0] = (char)(paths.size()-1);
+                    currPos[1] = depth;
+                }
+//                System.out.println((int)currPos[0] + " " + (int)currPos[1]);
             } else {
-                currPos += doRecursive(paths, map, sign, currPoint, paths.size()-1);
+                nextPos = doRecursive(paths, map, sign, currPoint, paths.size()-1, (char)(depth+1));
+                if ((nextPos[1] <= currPos[1] && currPos[1] != 0x00 && nextPos[1] != 0x00) || (currPos[1] == 0x00 && nextPos[1] != 0x00)) {
+                    currPos[0] = nextPos[0];
+                    currPos[1] = nextPos[1];
+                }
             }
         }
         
         // down
-        if (y+1 <= 6 && Integer.parseInt(String.valueOf(map[y+1][x])) > 0 && Integer.parseInt(String.valueOf(sign[y+1][x])) == 0) {
+        if (y+1 <= 11 && Integer.parseInt(String.valueOf(map[y+1][x])) > 0 && (sign[y+1][x] > depth || sign[y+1][x] == 0x00)) {
             ArrayList<Pair<String, String>> currPath = (ArrayList<Pair<String, String>>) paths.get(n).clone();
             
             Pair<String, String> currPoint = new Pair<String, String>(String.valueOf(x),String.valueOf(y+1));
@@ -132,15 +189,24 @@ public class Maze_dijkstra {
             
             paths.add(currPath);
             
-            sign[y+1][x] = '1';
+            sign[y+1][x] = depth;
             
             if (Integer.parseInt(String.valueOf(map[y+1][x])) == 3) {
-                currPos += paths.size()-1;
+                if ((currPos[1] != 0 && depth < currPos[1]) || currPos[1] == 0x00) {
+                    currPos[0] = (char)(paths.size()-1);
+                    currPos[1] = depth;
+                }
 //                System.out.println(currPos);
             } else {
-                currPos += doRecursive(paths, map, sign, currPoint, paths.size()-1);
+                nextPos = doRecursive(paths, map, sign, currPoint, paths.size()-1, (char)(depth+1));
+                if ((nextPos[1] <= currPos[1] && currPos[1] != 0x00 && nextPos[1] != 0x00) || (currPos[1] == 0x00 && nextPos[1] != 0x00)) {
+                    currPos[0] = nextPos[0];
+                    currPos[1] = nextPos[1];
+                }
             }
         }
+        
+//        System.out.println((int)currPos[0]);
         return currPos;
         
     }
@@ -163,7 +229,7 @@ public class Maze_dijkstra {
             }
         }
         
-        int stateY = 6;
+        int stateY = 11;
         int stateX = 5;
         
         for (int j=0; j<currDijkstra.size(); ++j) {
@@ -185,12 +251,21 @@ public class Maze_dijkstra {
             }
         }
         
-        for (int i=0; i<7; i++) {
-            for (int j=0; j<7; j++) {
+        for (int i=0; i<12; i++) {
+            for (int j=0; j<12; j++) {
                 System.out.print(map[i][j] + " ");    
             }
             System.out.println("");
         }
+        
+        System.out.println("");
+        
+//        for (int i=0; i<12; i++) {
+//            for (int j=0; j<12; j++) {
+//                System.out.print((int)sign[i][j] + " ");    
+//            }
+//            System.out.println("");
+//        }
         
 //        for (int i=0; i<7; i++) {
 //            for (int j=0; j<7; j++) {
